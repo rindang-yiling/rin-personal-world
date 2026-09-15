@@ -193,7 +193,8 @@ export function createStudio(container, onAction) {
   }
   character.rotation.y = 0.16;
   let modelReady = false;
-  new GLTFLoader().load('/assets/rin-avatar.glb', gltf => {
+  const assetBase = `${import.meta.env.BASE_URL}assets/`;
+  new GLTFLoader().load(`${assetBase}rin-avatar.glb`, gltf => {
     const model = gltf.scene;
     const bounds = new THREE.Box3().setFromObject(model);
     const size = bounds.getSize(new THREE.Vector3());

@@ -14,6 +14,7 @@ const projectArt = {
   wangwang: `<div class="art-label">先理解人，再创造不同。</div><div class="idea-orbit orbit-a"></div><div class="idea-orbit orbit-b"></div><div class="idea-face"><span>新</span><span>意</span></div><div class="idea-note note-a">200+ 份问卷</div><div class="idea-note note-b">3 项创新方向</div><span class="art-caption">消费者洞察 / 旺旺产品创新企划</span>`
 };
 
+const assetBase = `${import.meta.env.BASE_URL}assets`;
 const app = document.querySelector('#app');
 app.innerHTML = `
   <header class="site-header">
@@ -43,7 +44,7 @@ app.innerHTML = `
         <div class="scene-handwriting">小小工作室，大大的好奇心。<svg viewBox="0 0 66 40" aria-hidden="true"><path d="M2 4Q28 3 45 30M33 25L46 32L48 18"/></svg></div>
         <div class="scene-toolbar"><span>${icon('mouse-pointer-2')} 拖动，换个角度</span><div><button class="icon-button" data-reset aria-label="恢复初始视角" title="恢复视角">${icon('rotate-ccw')}</button><button class="icon-button" data-night aria-label="切换夜间工作室" aria-pressed="false" title="切换昼夜">${icon('moon')}</button><button class="icon-button" data-wave aria-label="和 Rin 打招呼" title="打个招呼">${icon('hand')}</button></div></div>
       </div>
-      <div class="hero-footer"><a href="#about">${icon('arrow-down')} 下滑，认识更多面的我</a><button data-avatar class="avatar-origin"><img src="/assets/rin-reference.jpg" alt="Rin 的原始二维人物插画"/><span>从一张插画，<br><b>到一个立体的我。</b></span>${icon('arrow-up-right')}</button><span class="hero-coordinate">不设边界 · 持续生长</span></div>
+      <div class="hero-footer"><a href="#about">${icon('arrow-down')} 下滑，认识更多面的我</a><button data-avatar class="avatar-origin"><img src="${assetBase}/rin-reference.jpg" alt="Rin 的原始二维人物插画"/><span>从一张插画，<br><b>到一个立体的我。</b></span>${icon('arrow-up-right')}</button><span class="hero-coordinate">不设边界 · 持续生长</span></div>
     </section>
     <div class="brand-strip" aria-label="实习经历概览"><span>我的足迹，曾在这里</span><div class="company-logo tencent">腾讯 <small>平台与内容</small></div><div class="company-logo insta">影石 <b>Insta360</b></div><div class="company-logo publicis">阳狮集团 <small>PUBLICIS GROUPE</small></div><div class="company-logo asia">亚信科技 <small>AI 产品研发</small></div></div>
     <section class="about section" id="about">
@@ -77,7 +78,7 @@ try {
   });
 } catch (error) {
   const container = document.querySelector('#studio');
-  container.innerHTML = '<img class="webgl-fallback" src="/assets/rin-reference.jpg" alt="Rin：黑色长发、红棕色眼镜、米白上衣和灰色百褶裙"/><p class="fallback-note">当前设备未启用 WebGL，已切换插画模式。项目与简历仍可正常浏览。</p>';
+  container.innerHTML = `<img class="webgl-fallback" src="${assetBase}/rin-reference.jpg" alt="Rin：黑色长发、红棕色眼镜、米白上衣和灰色百褶裙"/><p class="fallback-note">当前设备未启用 WebGL，已切换插画模式。项目与简历仍可正常浏览。</p>`;
   document.querySelectorAll('[data-reset],[data-night],[data-wave]').forEach(button => { button.disabled = true; });
 }
 
@@ -187,7 +188,7 @@ function showResume() {
   });
 }
 document.querySelectorAll('[data-resume]').forEach(button => button.addEventListener('click', showResume));
-document.querySelector('[data-avatar]').addEventListener('click', () => openDialog(`<div class="avatar-dialog"><div><span class="eyebrow">我的数字分身</span><h2 id="dialog-title">从平面，<br>走进小小世界。</h2><p>保留插画里的黑色长发、红棕色眼镜、米白上衣与灰色百褶裙，将它们变成工作室里可以从不同角度观察的立体形象。</p><p>回到工作室，拖动鼠标旋转视角，点一下小手，和另一个我打个招呼。</p><span class="avatar-model-note">${studio?.getState().modelReady ? '图生三维模型 · 已保存到本地网站资源' : '正在使用轻量立体形象'}</span></div><img src="/assets/rin-reference.jpg" alt="专属三维形象所依据的原始二维插画"/></div>`));
+document.querySelector('[data-avatar]').addEventListener('click', () => openDialog(`<div class="avatar-dialog"><div><span class="eyebrow">我的数字分身</span><h2 id="dialog-title">从平面，<br>走进小小世界。</h2><p>保留插画里的黑色长发、红棕色眼镜、米白上衣与灰色百褶裙，将它们变成工作室里可以从不同角度观察的立体形象。</p><p>回到工作室，拖动鼠标旋转视角，点一下小手，和另一个我打个招呼。</p><span class="avatar-model-note">${studio?.getState().modelReady ? '图生三维模型 · 已保存到本地网站资源' : '正在使用轻量立体形象'}</span></div><img src="${assetBase}/rin-reference.jpg" alt="专属三维形象所依据的原始二维插画"/></div>`));
 
 const menuButton = document.querySelector('.mobile-menu');
 menuButton.addEventListener('click', () => {
